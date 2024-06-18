@@ -1,12 +1,9 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import InputBox from './components/InputBox'
 import useCurrencyInfo from './hooks/useCurrencyInfo'
 
 function App() {
-  const [count, setCount] = useState(0)
   const [amount,setAmount]=useState(0)
   const [convertedAmount,setConvertedAmount]=useState(0)
   const [from,setFrom]=useState("usd")
@@ -20,6 +17,13 @@ function App() {
     setConvertedAmount(currencyInfo[to]*amount);
   }
 
+  const swap=()=>{
+    setFrom(to)
+    setTo(from)
+    setAmount(convertedAmount)
+    setConvertedAmount(amount)
+  }
+
   return (
     <>
      <h1 className='bg-green-500'>Currency Convertor</h1>
@@ -31,6 +35,8 @@ function App() {
      selectCurrency={from}
      currencyOptions={options}
      ></InputBox>
+     
+     <button onClick={()=>swap()} className='border border-black p-1 bg-sky-500'>Swap</button>
 
      <InputBox
      label="to"
@@ -41,7 +47,7 @@ function App() {
      currencyOptions={options}
      ></InputBox>
 
-     <button onClick={()=>convert()} className='border border-black p-1'>Convert {from.toUpperCase()} to {to.toUpperCase()}</button>
+     <button onClick={()=>convert()} className='border border-black p-1 m-2 bg-green-500'>Convert {from.toUpperCase()} to {to.toUpperCase()}</button>
     </>
   )
 }

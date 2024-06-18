@@ -13,7 +13,7 @@ function InputBox ({
 }){
     const amountId=useId();
     return (
-        <div className='border border-black m-4'>
+        <div className='border border-black'>
              <div>
             <label htmlFor={amountId}>{label}</label>
             <input 
